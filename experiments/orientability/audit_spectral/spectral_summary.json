@@ -1,0 +1,39 @@
+{
+  "method": {
+    "absolute_tolerance": 1e-08,
+    "relative_tolerance": 1e-07,
+    "operators": [
+      "graph_L",
+      "graph_Lnorm",
+      "unsigned_hodge1",
+      "hasse_Lnorm"
+    ],
+    "note": "unsigned_hodge1 matches the unsigned incidence available to the model"
+  },
+  "datasets": {
+    "old": {
+      "directory": "<WORKSPACE_ROOT>/data/punc_torus_vs_punc_klein",
+      "pair_count": 50,
+      "leaking_pairs_by_operator": {
+        "graph_L": 50,
+        "graph_Lnorm": 50,
+        "unsigned_hodge1": 50,
+        "hasse_Lnorm": 50
+      },
+      "all_operators_cospectral_pairs": 0,
+      "pairs_with_any_spectral_leak": 50
+    },
+    "metric_matched": {
+      "directory": "<WORKSPACE_ROOT>/data/punc_torus_vs_punc_klein_metric_matched",
+      "pair_count": 50,
+      "leaking_pairs_by_operator": {
+        "graph_L": 50,
+        "graph_Lnorm": 50,
+        "unsigned_hodge1": 50,
+        "hasse_Lnorm": 50
+      },
+      "all_operators_cospectral_pairs": 0,
+      "pairs_with_any_spectral_leak": 50
+    }
+  }
+}

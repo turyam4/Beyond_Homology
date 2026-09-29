@@ -1,0 +1,151 @@
+
+defaults:
+  - override hydra/job_logging: disabled
+  - override hydra/hydra_logging: disabled
+  - _self_
+
+
+genus: 2
+model_names: [mlp]
+
+models:
+  smcn:
+    enabled: true
+  mlp:
+    enabled: true
+    hidden_dim: 32
+    num_layers: 1
+    dropout: 0.0
+  dist_mlp:
+    enabled: true
+    hidden_dim: 32
+    num_layers: 1
+    dropout: 0.0
+    high_rank: 1
+    max_dist: 10
+  boundary_mlp:
+    enabled: true
+    hidden_dim: 32
+    num_layers: 1
+    dropout: 0.0
+  spec_mlp:
+    enabled: true
+    hidden_dim: 32
+    num_layers: 1
+    dropout: 0.0
+    k: 16
+    moment_L: 8
+    operators: [A, L, Lnorm, hodge1]
+  gin:
+    enabled: true
+    hidden_dim: 64
+    num_layers: 4
+    dropout: 0.0
+  esan:
+    enabled: true
+    hidden_dim: 64
+    num_layers: 4
+    dropout: 0.0
+    num_hops: 2
+    chunk_size: 2048
+  homp_cin:
+    enabled: true
+    hidden_dim: 64
+    num_layers: 4
+    dropout: 0.0
+    final_dropout: 0.0
+    in_dropout: 0.0
+    activation: relu
+    number_of_mlp_layers: 2
+    include_rank2_updates: true
+    output_ranks: [0, 2]
+  hasse_gin:
+    enabled: true
+    hidden_dim: 64
+    num_layers: 4
+    dropout: 0.0
+
+# -----------------------------------------------------------------------------
+# Dataset definition
+# -----------------------------------------------------------------------------
+min_g: 2
+max_g: 2
+samples_per_g: 16
+number_of_permuted_copies: 32
+low_rk: 0
+high_rk: 1
+binary_marking: true       # true = local incidence marking; false = distance marking
+
+noise_pairs_per_g: 2
+min_subdiv: 3
+max_subdiv: 3
+match_backtracks: true
+max_tries: 100
+max_expansions: 10
+
+seed: 0
+data_seed: 0
+permutation_seed: 0
+order_seed: 0
+model_seed: 0
+
+# -----------------------------------------------------------------------------
+# Fixed cache
+# -----------------------------------------------------------------------------
+dataset_cache_dir: null
+cache_version: v7
+cache_only: false
+auto_build_cache: true
+cache_as_minibatches: true
+construct_cache_by_phase: true
+compact_subcomplex_cache: true
+include_subcomplex_features: true
+prune_to_baseline_fields: false
+
+# -----------------------------------------------------------------------------
+# SMCN / HOMP model fields required by the shared evaluator
+# -----------------------------------------------------------------------------
+model_type: subcomplex
+embedding_dim: 64
+number_of_mlp_layers: 2
+dropout: 0.0
+in_dropout: 0.0
+activation: relu
+output_ranks: [0, 1]
+number_cin_layers_for_subcomplex: 1
+number_subgraph_layers: 2
+number_cin_layers_for_homp: 3
+
+# -----------------------------------------------------------------------------
+# BREC protocol
+# -----------------------------------------------------------------------------
+num_epochs: 20
+compact_epoch_progress: true
+batch_size: 8
+eval_batch_size: 8
+learning_rate: 0.001
+weight_decay: 0.0
+grad_clip: 1.0
+margin: 0.0
+threshold: 60.0
+epsilon_cmp: 1.0e-6
+epsilon_matrix: 1.0e-7
+fresh_model_per_pair: true
+
+# -----------------------------------------------------------------------------
+# Runtime
+# -----------------------------------------------------------------------------
+device: auto
+output_dir: runs
+run_tag: null
+run_model_name: null
+pin_memory: false
+sync_dir: null
+sync_world_size: 1
+sync_rank: 0
+sync_timeout_seconds: 1800
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null

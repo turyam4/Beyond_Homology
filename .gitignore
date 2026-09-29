@@ -1,0 +1,55 @@
+# Python/runtime caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Local environments
+.env
+.venv/
+venv/
+env/
+smcn-env/
+
+# Logs and run outputs
+*.log
+slurm-*.out
+slurm-*.err
+logs/
+runs/
+run_logs/
+dataset_cache/
+outputs/
+multirun/
+.hydra/
+
+# Benchmark-generated data and artifacts
+experiments/generate_data/*/
+experiments/**/logs/
+experiments/**/runs/
+experiments/**/run_logs/
+experiments/**/test_outputs/
+experiments/**/split_runs/
+experiments/**/*.pt
+experiments/**/manifest.json
+experiments/**/metrics.json
+experiments/**/config.json
+experiments/**/pair_results.csv
+experiments/**/results.csv
+experiments/**/certificates.jsonl
+
+# Keep generator and benchmark source/config files trackable
+!experiments/generate_data/get_data.py
+!experiments/**/config.yaml
+!experiments/**/*.py
+!experiments/**/*.sh
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.swo

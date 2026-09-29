@@ -1,0 +1,101 @@
+pair_index,h,p,member,expected_orientable,orientable,vertices,edges,faces,boundary_edges,dual_components,contradiction_edge,contradiction_faces
+0,6,4,first,True,True,24,48,23,4,1,,
+0,6,4,second,False,False,24,48,23,4,1,29,"[11, 14]"
+1,8,4,first,True,True,32,64,31,4,1,,
+1,8,4,second,False,False,32,64,31,4,1,37,"[15, 18]"
+2,10,4,first,True,True,40,80,39,4,1,,
+2,10,4,second,False,False,40,80,39,4,1,45,"[19, 22]"
+3,12,4,first,True,True,48,96,47,4,1,,
+3,12,4,second,False,False,48,96,47,4,1,53,"[23, 26]"
+4,14,4,first,True,True,56,112,55,4,1,,
+4,14,4,second,False,False,56,112,55,4,1,61,"[27, 30]"
+5,16,4,first,True,True,64,128,63,4,1,,
+5,16,4,second,False,False,64,128,63,4,1,69,"[31, 34]"
+6,18,4,first,True,True,72,144,71,4,1,,
+6,18,4,second,False,False,72,144,71,4,1,77,"[35, 38]"
+7,20,4,first,True,True,80,160,79,4,1,,
+7,20,4,second,False,False,80,160,79,4,1,85,"[39, 42]"
+8,22,4,first,True,True,88,176,87,4,1,,
+8,22,4,second,False,False,88,176,87,4,1,93,"[43, 46]"
+9,24,4,first,True,True,96,192,95,4,1,,
+9,24,4,second,False,False,96,192,95,4,1,101,"[47, 50]"
+10,26,4,first,True,True,104,208,103,4,1,,
+10,26,4,second,False,False,104,208,103,4,1,109,"[51, 54]"
+11,28,4,first,True,True,112,224,111,4,1,,
+11,28,4,second,False,False,112,224,111,4,1,117,"[55, 58]"
+12,30,4,first,True,True,120,240,119,4,1,,
+12,30,4,second,False,False,120,240,119,4,1,125,"[59, 62]"
+13,32,4,first,True,True,128,256,127,4,1,,
+13,32,4,second,False,False,128,256,127,4,1,133,"[63, 66]"
+14,34,4,first,True,True,136,272,135,4,1,,
+14,34,4,second,False,False,136,272,135,4,1,141,"[67, 70]"
+15,36,4,first,True,True,144,288,143,4,1,,
+15,36,4,second,False,False,144,288,143,4,1,149,"[71, 74]"
+16,38,4,first,True,True,152,304,151,4,1,,
+16,38,4,second,False,False,152,304,151,4,1,157,"[75, 78]"
+17,40,4,first,True,True,160,320,159,4,1,,
+17,40,4,second,False,False,160,320,159,4,1,165,"[79, 82]"
+18,42,4,first,True,True,168,336,167,4,1,,
+18,42,4,second,False,False,168,336,167,4,1,173,"[83, 86]"
+19,44,4,first,True,True,176,352,175,4,1,,
+19,44,4,second,False,False,176,352,175,4,1,181,"[87, 90]"
+20,46,4,first,True,True,184,368,183,4,1,,
+20,46,4,second,False,False,184,368,183,4,1,189,"[91, 94]"
+21,48,4,first,True,True,192,384,191,4,1,,
+21,48,4,second,False,False,192,384,191,4,1,197,"[95, 98]"
+22,50,4,first,True,True,200,400,199,4,1,,
+22,50,4,second,False,False,200,400,199,4,1,205,"[99, 102]"
+23,52,4,first,True,True,208,416,207,4,1,,
+23,52,4,second,False,False,208,416,207,4,1,213,"[103, 106]"
+24,54,4,first,True,True,216,432,215,4,1,,
+24,54,4,second,False,False,216,432,215,4,1,221,"[107, 110]"
+25,56,4,first,True,True,224,448,223,4,1,,
+25,56,4,second,False,False,224,448,223,4,1,229,"[111, 114]"
+26,58,4,first,True,True,232,464,231,4,1,,
+26,58,4,second,False,False,232,464,231,4,1,237,"[115, 118]"
+27,60,4,first,True,True,240,480,239,4,1,,
+27,60,4,second,False,False,240,480,239,4,1,245,"[119, 122]"
+28,62,4,first,True,True,248,496,247,4,1,,
+28,62,4,second,False,False,248,496,247,4,1,253,"[123, 126]"
+29,64,4,first,True,True,256,512,255,4,1,,
+29,64,4,second,False,False,256,512,255,4,1,261,"[127, 130]"
+30,66,4,first,True,True,264,528,263,4,1,,
+30,66,4,second,False,False,264,528,263,4,1,269,"[131, 134]"
+31,68,4,first,True,True,272,544,271,4,1,,
+31,68,4,second,False,False,272,544,271,4,1,277,"[135, 138]"
+32,70,4,first,True,True,280,560,279,4,1,,
+32,70,4,second,False,False,280,560,279,4,1,285,"[139, 142]"
+33,72,4,first,True,True,288,576,287,4,1,,
+33,72,4,second,False,False,288,576,287,4,1,293,"[143, 146]"
+34,74,4,first,True,True,296,592,295,4,1,,
+34,74,4,second,False,False,296,592,295,4,1,301,"[147, 150]"
+35,76,4,first,True,True,304,608,303,4,1,,
+35,76,4,second,False,False,304,608,303,4,1,309,"[151, 154]"
+36,78,4,first,True,True,312,624,311,4,1,,
+36,78,4,second,False,False,312,624,311,4,1,317,"[155, 158]"
+37,80,4,first,True,True,320,640,319,4,1,,
+37,80,4,second,False,False,320,640,319,4,1,325,"[159, 162]"
+38,82,4,first,True,True,328,656,327,4,1,,
+38,82,4,second,False,False,328,656,327,4,1,333,"[163, 166]"
+39,84,4,first,True,True,336,672,335,4,1,,
+39,84,4,second,False,False,336,672,335,4,1,341,"[167, 170]"
+40,86,4,first,True,True,344,688,343,4,1,,
+40,86,4,second,False,False,344,688,343,4,1,349,"[171, 174]"
+41,88,4,first,True,True,352,704,351,4,1,,
+41,88,4,second,False,False,352,704,351,4,1,357,"[175, 178]"
+42,90,4,first,True,True,360,720,359,4,1,,
+42,90,4,second,False,False,360,720,359,4,1,365,"[179, 182]"
+43,92,4,first,True,True,368,736,367,4,1,,
+43,92,4,second,False,False,368,736,367,4,1,373,"[183, 186]"
+44,94,4,first,True,True,376,752,375,4,1,,
+44,94,4,second,False,False,376,752,375,4,1,381,"[187, 190]"
+45,96,4,first,True,True,384,768,383,4,1,,
+45,96,4,second,False,False,384,768,383,4,1,389,"[191, 194]"
+46,98,4,first,True,True,392,784,391,4,1,,
+46,98,4,second,False,False,392,784,391,4,1,397,"[195, 198]"
+47,100,4,first,True,True,400,800,399,4,1,,
+47,100,4,second,False,False,400,800,399,4,1,405,"[199, 202]"
+48,102,4,first,True,True,408,816,407,4,1,,
+48,102,4,second,False,False,408,816,407,4,1,413,"[203, 206]"
+49,104,4,first,True,True,416,832,415,4,1,,
+49,104,4,second,False,False,416,832,415,4,1,421,"[207, 210]"

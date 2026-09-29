@@ -1,0 +1,172 @@
+defaults:
+  - override hydra/job_logging: disabled
+  - override hydra/hydra_logging: disabled
+  - _self_
+
+# Select one family at launch:
+#   family=cylinder_vs_mobius
+#   family=torus_vs_klein
+#   family=punc_torus_vs_punc_klein
+family: cylinder_vs_mobius
+model_names: [homp_cin]
+
+models:
+  mlp: {hidden_dim: 32, num_layers: 1, dropout: 0.0}
+  dist_mlp: {hidden_dim: 32, num_layers: 1, dropout: 0.0, high_rank: 1, max_dist: 10}
+  boundary_mlp: {hidden_dim: 32, num_layers: 1, dropout: 0.0}
+  gin: {hidden_dim: 64, num_layers: 4, dropout: 0.0}
+  # ESAN expands each graph into ego-net subgraphs.  Keep a smaller
+  # micro-batch than GIN/Hasse; gradient accumulation still gives exactly
+  # one optimizer step per epoch over all permutation copies.
+  esan:
+    hidden_dim: 64
+    num_layers: 4
+    dropout: 0.0
+    num_hops: 2
+    chunk_size: 128
+    batch_size: 8
+    free_memory_each_batch: true
+  homp_cin:
+    hidden_dim: 64
+    num_layers: 4
+    dropout: 0.0
+    final_dropout: 0.0
+    in_dropout: 0.0
+    activation: relu
+    number_of_mlp_layers: 2
+    include_rank2_updates: true
+    output_ranks: [0, 2]
+  hasse_gin: {hidden_dim: 64, num_layers: 4, dropout: 0.0}
+  smcn:
+    embedding_dim: 64
+    number_cin_layers: 0
+    number_subgraph_layers: 4
+    number_of_mlp_layers: 2
+    dropout: 0.0
+    in_dropout: 0.0
+    residual: false
+    activation: relu
+    num_classes: 2
+    output_ranks: [0, 2]
+    low_rank: 0
+    high_rank: 2
+    binary_marking: false
+    batch_size: 16
+    free_memory_each_batch: true
+
+max_pairs: null
+number_of_permuted_copies: 32
+num_epochs: 20
+batch_size: 16
+learning_rate: 0.001
+weight_decay: 0.0
+grad_clip: 1.0
+margin: 0.0
+threshold: 60.0
+epsilon_cmp: 1.0e-6
+epsilon_matrix: 1.0e-7
+fresh_model_per_pair: false
+
+data_seed: 0
+permutation_seed: 0
+order_seed: 0
+model_seed: 0
+seed: 0
+device: auto
+output_dir: runs
+
+# Dataset policy for baselines:
+# - base pairs are stored once under data/;
+# - permutation copies are generated pair-wise in RAM during evaluation;
+# - no 32-copy-per-pair tensor cache is written by this baseline evaluator.
+dataset_policy:
+  cache_full_permutation_copies: false
+  load_base_pairs_only: true
+  construct_target_then_reliability: true
+  free_pair_after_trials: true
+
+families:
+  cylinder_vs_mobius:
+    label: Cylinder vs Mobius
+    family_dir: cylinder_vs_mobius
+    base_pair_dir: ../../../data/cylinder_vs_mobius
+    dataset:
+      constructor: BoundedOrientabilityDataset
+      preparation_script: cylinder_vs_mobius/cyl_vs_mob.py
+      min_dim: 4
+      max_dim: 11
+      low_rk: 0
+      high_rk: 1
+      data_seed: 0
+      first_class: cylinder
+      second_class: mobius
+      reliability_class: cylinder
+      girth_matched: null
+      binary_marking: null
+    batch_size: 8
+    models:
+      dist_mlp: {high_rank: 1}
+      smcn:
+        output_ranks: [0, 1]
+        high_rank: 1
+        binary_marking: false
+
+  torus_vs_klein:
+    label: Torus vs Klein Bottle
+    family_dir: torus_vs_klein
+    base_pair_dir: ../../../data/torus_vs_klein
+    dataset:
+      constructor: ClosedOrientabilityDataset
+      preparation_script: torus_vs_klein/klein_torus_dataset.py
+      min_dim: 4
+      max_dim: 11
+      low_rk: 0
+      high_rk: 2
+      data_seed: 0
+      first_class: torus
+      second_class: klein
+      reliability_class: torus
+      girth_matched: false
+      binary_marking: null
+    batch_size: 8
+    models:
+      dist_mlp: {high_rank: 2}
+      smcn:
+        output_ranks: [0, 2]
+        high_rank: 2
+        binary_marking: false
+
+  punc_torus_vs_punc_klein:
+    label: Metric-Matched Punctured Torus vs Punctured Klein Bottle
+    family_dir: punc_torus_vs_punc_klein
+    base_pair_dir: ../../../data/punc_torus_vs_punc_klein_metric_matched
+    dataset:
+      constructor: PuncturedOrientabilityDataset
+      preparation_script: punc_torus_vs_punc_klein/punc_torus_vs_klein.py
+      min_dim: 4
+      max_dim: 13
+      metric_matched: true
+      metric_match_p: 4
+      metric_match_min_h: 6
+      metric_match_h_step: 2
+      metric_match_pair_count: 50
+      metric_match_max_dist: 10
+      low_rk: 0
+      high_rk: 2
+      data_seed: 0
+      first_class: punctured_torus
+      second_class: punctured_klein
+      reliability_class: punctured_torus
+      girth_matched: true
+      binary_marking: false
+    batch_size: 16
+    models:
+      dist_mlp: {high_rank: 2}
+      smcn:
+        output_ranks: [0, 2]
+        high_rank: 2
+        binary_marking: true
+
+hydra:
+  run: {dir: .}
+  output_subdir: null

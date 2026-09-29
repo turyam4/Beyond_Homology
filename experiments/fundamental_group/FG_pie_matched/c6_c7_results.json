@@ -1,0 +1,746 @@
+{
+  "closed_walks_matched": 0,
+  "cycle_L": 8,
+  "cycle_counts_matched": 0,
+  "girth_matched": 16,
+  "n_pairs": 16,
+  "per_pair": [
+    {
+      "closed_walks_match": false,
+      "cycle_counts_match": false,
+      "cycles_a": {
+        "3": 153,
+        "4": 1042,
+        "5": 5979,
+        "6": 28062,
+        "7": 124676,
+        "8": 499130
+      },
+      "cycles_b": {
+        "3": 153,
+        "4": 1048,
+        "5": 5999,
+        "6": 28056,
+        "7": 124434,
+        "8": 496749
+      },
+      "girth": [
+        3,
+        3
+      ],
+      "girth_match": true,
+      "pair_index": 0,
+      "rank_counts": [
+        58,
+        204,
+        144
+      ],
+      "spectral": {
+        "hasse_adjacency": false,
+        "hasse_laplacian": false,
+        "hasse_rank_coloured_adjacency": false,
+        "hodge_L0_signed": false,
+        "hodge_L0_unsigned": false,
+        "hodge_L1_signed": false,
+        "hodge_L1_unsigned": false,
+        "hodge_L2_signed": false,
+        "hodge_L2_unsigned": false,
+        "skeleton_adjacency": false,
+        "skeleton_laplacian": false,
+        "skeleton_norm_laplacian": false
+      }
+    },
+    {
+      "closed_walks_match": false,
+      "cycle_counts_match": false,
+      "cycles_a": {
+        "3": 226,
+        "4": 2211,
+        "5": 13542,
+        "6": 74715,
+        "7": 392353,
+        "8": 1818232
+      },
+      "cycles_b": {
+        "3": 226,
+        "4": 2208,
+        "5": 13530,
+        "6": 74709,
+        "7": 392476,
+        "8": 1820264
+      },
+      "girth": [
+        3,
+        3
+      ],
+      "girth_match": true,
+      "pair_index": 1,
+      "rank_counts": [
+        82,
+        300,
+        216
+      ],
+      "spectral": {
+        "hasse_adjacency": false,
+        "hasse_laplacian": false,
+        "hasse_rank_coloured_adjacency": false,
+        "hodge_L0_signed": false,
+        "hodge_L0_unsigned": false,
+        "hodge_L1_signed": false,
+        "hodge_L1_unsigned": false,
+        "hodge_L2_signed": false,
+        "hodge_L2_unsigned": false,
+        "skeleton_adjacency": false,
+        "skeleton_laplacian": false,
+        "skeleton_norm_laplacian": false
+      }
+    },
+    {
+      "closed_walks_match": false,
+      "cycle_counts_match": false,
+      "cycles_a": {
+        "3": 228,
+        "4": 2218,
+        "5": 13552,
+        "6": 74695,
+        "7": 391369,
+        "8": 1807748
+      },
+      "cycles_b": {
+        "3": 228,
+        "4": 2212,
+        "5": 13528,
+        "6": 74679,
+        "7": 391623,
+        "8": 1811912
+      },
+      "girth": [
+        3,
+        3
+      ],
+      "girth_match": true,
+      "pair_index": 2,
+      "rank_counts": [
+        82,
+        300,
+        216
+      ],
+      "spectral": {
+        "hasse_adjacency": false,
+        "hasse_laplacian": false,
+        "hasse_rank_coloured_adjacency": false,
+        "hodge_L0_signed": false,
+        "hodge_L0_unsigned": false,
+        "hodge_L1_signed": false,
+        "hodge_L1_unsigned": false,
+        "hodge_L2_signed": false,
+        "hodge_L2_unsigned": false,
+        "skeleton_adjacency": false,
+        "skeleton_laplacian": false,
+        "skeleton_norm_laplacian": false
+      }
+    },
+    {
+      "closed_walks_match": false,
+      "cycle_counts_match": false,
+      "cycles_a": {
+        "3": 380,
+        "4": 5864,
+        "5": 37808,
+        "6": 268685,
+        "7": 1696300,
+        "8": 9397987
+      },
+      "cycles_b": {
+        "3": 380,
+        "4": 5870,
+        "5": 37840,
+        "6": 268724,
+        "7": 1695983,
+        "8": 9389367
+      },
+      "girth": [
+        3,
+        3
+      ],
+      "girth_match": true,
+      "pair_index": 3,
+      "rank_counts": [
+        130,
+        492,
+        360
+      ],
+      "spectral": {
+        "hasse_adjacency": false,
+        "hasse_laplacian": false,
+        "hasse_rank_coloured_adjacency": false,
+        "hodge_L0_signed": false,
+        "hodge_L0_unsigned": false,
+        "hodge_L1_signed": false,
+        "hodge_L1_unsigned": false,
+        "hodge_L2_signed": false,
+        "hodge_L2_unsigned": false,
+        "skeleton_adjacency": false,
+        "skeleton_laplacian": false,
+        "skeleton_norm_laplacian": false
+      }
+    },
+    {
+      "closed_walks_match": false,
+      "cycle_counts_match": false,
+      "cycles_a": {
+        "3": 229,
+        "4": 2214,
+        "5": 13527,
+        "6": 74664,
+        "7": 391178,
+        "8": 1807624
+      },
+      "cycles_b": {
+        "3": 229,
+        "4": 2238,
+        "5": 13623,
+        "6": 74722,
+        "7": 390192,
+        "8": 1791265
+      },
+      "girth": [
+        3,
+        3
+      ],
+      "girth_match": true,
+      "pair_index": 4,
+      "rank_counts": [
+        82,
+        300,
+        216
+      ],
+      "spectral": {
+        "hasse_adjacency": false,
+        "hasse_laplacian": false,
+        "hasse_rank_coloured_adjacency": false,
+        "hodge_L0_signed": false,
+        "hodge_L0_unsigned": false,
+        "hodge_L1_signed": false,
+        "hodge_L1_unsigned": false,
+        "hodge_L2_signed": false,
+        "hodge_L2_unsigned": false,
+        "skeleton_adjacency": false,
+        "skeleton_laplacian": false,
+        "skeleton_norm_laplacian": false
+      }
+    },
+    {
+      "closed_walks_match": false,
+      "cycle_counts_match": false,
+      "cycles_a": {
+        "3": 227,
+        "4": 2210,
+        "5": 13529,
+        "6": 74696,
+        "7": 392052,
+        "8": 1816038
+      },
+      "cycles_b": {
+        "3": 227,
+        "4": 2225,
+        "5": 13589,
+        "6": 74726,
+        "7": 391408,
+        "8": 1805798
+      },
+      "girth": [
+        3,
+        3
+      ],
+      "girth_match": true,
+      "pair_index": 5,
+      "rank_counts": [
+        82,
+        300,
+        216
+      ],
+      "spectral": {
+        "hasse_adjacency": false,
+        "hasse_laplacian": false,
+        "hasse_rank_coloured_adjacency": false,
+        "hodge_L0_signed": false,
+        "hodge_L0_unsigned": false,
+        "hodge_L1_signed": false,
+        "hodge_L1_unsigned": false,
+        "hodge_L2_signed": false,
+        "hodge_L2_unsigned": false,
+        "skeleton_adjacency": false,
+        "skeleton_laplacian": false,
+        "skeleton_norm_laplacian": false
+      }
+    },
+    {
+      "closed_walks_match": false,
+      "cycle_counts_match": false,
+      "cycles_a": {
+        "3": 231,
+        "4": 2218,
+        "5": 13525,
+        "6": 74635,
+        "7": 390314,
+        "8": 1799208
+      },
+      "cycles_b": {
+        "3": 231,
+        "4": 2221,
+        "5": 13537,
+        "6": 74645,
+        "7": 390189,
+        "8": 1797064
+      },
+      "girth": [
+        3,
+        3
+      ],
+      "girth_match": true,
+      "pair_index": 6,
+      "rank_counts": [
+        82,
+        300,
+        216
+      ],
+      "spectral": {
+        "hasse_adjacency": false,
+        "hasse_laplacian": false,
+        "hasse_rank_coloured_adjacency": false,
+        "hodge_L0_signed": false,
+        "hodge_L0_unsigned": false,
+        "hodge_L1_signed": false,
+        "hodge_L1_unsigned": false,
+        "hodge_L2_signed": false,
+        "hodge_L2_unsigned": false,
+        "skeleton_adjacency": false,
+        "skeleton_laplacian": false,
+        "skeleton_norm_laplacian": false
+      }
+    },
+    {
+      "closed_walks_match": false,
+      "cycle_counts_match": false,
+      "cycles_a": {
+        "3": 227,
+        "4": 2213,
+        "5": 13541,
+        "6": 74705,
+        "7": 391935,
+        "8": 1813990
+      },
+      "cycles_b": {
+        "3": 227,
+        "4": 2213,
+        "5": 13541,
+        "6": 74705,
+        "7": 391930,
+        "8": 1813945
+      },
+      "girth": [
+        3,
+        3
+      ],
+      "girth_match": true,
+      "pair_index": 7,
+      "rank_counts": [
+        82,
+        300,
+        216
+      ],
+      "spectral": {
+        "hasse_adjacency": false,
+        "hasse_laplacian": false,
+        "hasse_rank_coloured_adjacency": false,
+        "hodge_L0_signed": false,
+        "hodge_L0_unsigned": false,
+        "hodge_L1_signed": false,
+        "hodge_L1_unsigned": false,
+        "hodge_L2_signed": false,
+        "hodge_L2_unsigned": false,
+        "skeleton_adjacency": false,
+        "skeleton_laplacian": false,
+        "skeleton_norm_laplacian": false
+      }
+    },
+    {
+      "closed_walks_match": false,
+      "cycle_counts_match": false,
+      "cycles_a": {
+        "3": 225,
+        "4": 2209,
+        "5": 13543,
+        "6": 74730,
+        "7": 392809,
+        "8": 1822616
+      },
+      "cycles_b": {
+        "3": 225,
+        "4": 2215,
+        "5": 13567,
+        "6": 74744,
+        "7": 392531,
+        "8": 1818322
+      },
+      "girth": [
+        3,
+        3
+      ],
+      "girth_match": true,
+      "pair_index": 8,
+      "rank_counts": [
+        82,
+        300,
+        216
+      ],
+      "spectral": {
+        "hasse_adjacency": false,
+        "hasse_laplacian": false,
+        "hasse_rank_coloured_adjacency": false,
+        "hodge_L0_signed": false,
+        "hodge_L0_unsigned": false,
+        "hodge_L1_signed": false,
+        "hodge_L1_unsigned": false,
+        "hodge_L2_signed": false,
+        "hodge_L2_unsigned": false,
+        "skeleton_adjacency": false,
+        "skeleton_laplacian": false,
+        "skeleton_norm_laplacian": false
+      }
+    },
+    {
+      "closed_walks_match": false,
+      "cycle_counts_match": false,
+      "cycles_a": {
+        "3": 152,
+        "4": 1046,
+        "5": 6000,
+        "6": 28073,
+        "7": 124716,
+        "8": 498974
+      },
+      "cycles_b": {
+        "3": 152,
+        "4": 1040,
+        "5": 5980,
+        "6": 28077,
+        "7": 124928,
+        "8": 501280
+      },
+      "girth": [
+        3,
+        3
+      ],
+      "girth_match": true,
+      "pair_index": 9,
+      "rank_counts": [
+        58,
+        204,
+        144
+      ],
+      "spectral": {
+        "hasse_adjacency": false,
+        "hasse_laplacian": false,
+        "hasse_rank_coloured_adjacency": false,
+        "hodge_L0_signed": false,
+        "hodge_L0_unsigned": false,
+        "hodge_L1_signed": false,
+        "hodge_L1_unsigned": false,
+        "hodge_L2_signed": false,
+        "hodge_L2_unsigned": false,
+        "skeleton_adjacency": false,
+        "skeleton_laplacian": false,
+        "skeleton_norm_laplacian": false
+      }
+    },
+    {
+      "closed_walks_match": false,
+      "cycle_counts_match": false,
+      "cycles_a": {
+        "3": 228,
+        "4": 2215,
+        "5": 13540,
+        "6": 74684,
+        "7": 391474,
+        "8": 1809757
+      },
+      "cycles_b": {
+        "3": 228,
+        "4": 2218,
+        "5": 13552,
+        "6": 74690,
+        "7": 391345,
+        "8": 1807733
+      },
+      "girth": [
+        3,
+        3
+      ],
+      "girth_match": true,
+      "pair_index": 10,
+      "rank_counts": [
+        82,
+        300,
+        216
+      ],
+      "spectral": {
+        "hasse_adjacency": false,
+        "hasse_laplacian": false,
+        "hasse_rank_coloured_adjacency": false,
+        "hodge_L0_signed": false,
+        "hodge_L0_unsigned": false,
+        "hodge_L1_signed": false,
+        "hodge_L1_unsigned": false,
+        "hodge_L2_signed": false,
+        "hodge_L2_unsigned": false,
+        "skeleton_adjacency": false,
+        "skeleton_laplacian": false,
+        "skeleton_norm_laplacian": false
+      }
+    },
+    {
+      "closed_walks_match": false,
+      "cycle_counts_match": false,
+      "cycles_a": {
+        "3": 152,
+        "4": 1040,
+        "5": 5980,
+        "6": 28079,
+        "7": 124949,
+        "8": 501358
+      },
+      "cycles_b": {
+        "3": 152,
+        "4": 1049,
+        "5": 6010,
+        "6": 28075,
+        "7": 124615,
+        "8": 497769
+      },
+      "girth": [
+        3,
+        3
+      ],
+      "girth_match": true,
+      "pair_index": 11,
+      "rank_counts": [
+        58,
+        204,
+        144
+      ],
+      "spectral": {
+        "hasse_adjacency": false,
+        "hasse_laplacian": false,
+        "hasse_rank_coloured_adjacency": false,
+        "hodge_L0_signed": false,
+        "hodge_L0_unsigned": false,
+        "hodge_L1_signed": false,
+        "hodge_L1_unsigned": false,
+        "hodge_L2_signed": false,
+        "hodge_L2_unsigned": false,
+        "skeleton_adjacency": false,
+        "skeleton_laplacian": false,
+        "skeleton_norm_laplacian": false
+      }
+    },
+    {
+      "closed_walks_match": false,
+      "cycle_counts_match": false,
+      "cycles_a": {
+        "3": 381,
+        "4": 5857,
+        "5": 37759,
+        "6": 268605,
+        "7": 1695910,
+        "8": 9401090
+      },
+      "cycles_b": {
+        "3": 381,
+        "4": 5866,
+        "5": 37807,
+        "6": 268666,
+        "7": 1695403,
+        "8": 9387860
+      },
+      "girth": [
+        3,
+        3
+      ],
+      "girth_match": true,
+      "pair_index": 12,
+      "rank_counts": [
+        130,
+        492,
+        360
+      ],
+      "spectral": {
+        "hasse_adjacency": false,
+        "hasse_laplacian": false,
+        "hasse_rank_coloured_adjacency": false,
+        "hodge_L0_signed": false,
+        "hodge_L0_unsigned": false,
+        "hodge_L1_signed": false,
+        "hodge_L1_unsigned": false,
+        "hodge_L2_signed": false,
+        "hodge_L2_unsigned": false,
+        "skeleton_adjacency": false,
+        "skeleton_laplacian": false,
+        "skeleton_norm_laplacian": false
+      }
+    },
+    {
+      "closed_walks_match": false,
+      "cycle_counts_match": false,
+      "cycles_a": {
+        "3": 376,
+        "4": 5853,
+        "5": 37796,
+        "6": 268721,
+        "7": 1700032,
+        "8": 9442916
+      },
+      "cycles_b": {
+        "3": 376,
+        "4": 5850,
+        "5": 37780,
+        "6": 268711,
+        "7": 1700311,
+        "8": 9447935
+      },
+      "girth": [
+        3,
+        3
+      ],
+      "girth_match": true,
+      "pair_index": 13,
+      "rank_counts": [
+        130,
+        492,
+        360
+      ],
+      "spectral": {
+        "hasse_adjacency": false,
+        "hasse_laplacian": false,
+        "hasse_rank_coloured_adjacency": false,
+        "hodge_L0_signed": false,
+        "hodge_L0_unsigned": false,
+        "hodge_L1_signed": false,
+        "hodge_L1_unsigned": false,
+        "hodge_L2_signed": false,
+        "hodge_L2_unsigned": false,
+        "skeleton_adjacency": false,
+        "skeleton_laplacian": false,
+        "skeleton_norm_laplacian": false
+      }
+    },
+    {
+      "closed_walks_match": false,
+      "cycle_counts_match": false,
+      "cycles_a": {
+        "3": 152,
+        "4": 1043,
+        "5": 5990,
+        "6": 28076,
+        "7": 124834,
+        "8": 500180
+      },
+      "cycles_b": {
+        "3": 152,
+        "4": 1052,
+        "5": 6020,
+        "6": 28073,
+        "7": 124515,
+        "8": 496666
+      },
+      "girth": [
+        3,
+        3
+      ],
+      "girth_match": true,
+      "pair_index": 14,
+      "rank_counts": [
+        58,
+        204,
+        144
+      ],
+      "spectral": {
+        "hasse_adjacency": false,
+        "hasse_laplacian": false,
+        "hasse_rank_coloured_adjacency": false,
+        "hodge_L0_signed": false,
+        "hodge_L0_unsigned": false,
+        "hodge_L1_signed": false,
+        "hodge_L1_unsigned": false,
+        "hodge_L2_signed": false,
+        "hodge_L2_unsigned": false,
+        "skeleton_adjacency": false,
+        "skeleton_laplacian": false,
+        "skeleton_norm_laplacian": false
+      }
+    },
+    {
+      "closed_walks_match": false,
+      "cycle_counts_match": false,
+      "cycles_a": {
+        "3": 379,
+        "4": 5850,
+        "5": 37745,
+        "6": 268618,
+        "7": 1697833,
+        "8": 9425364
+      },
+      "cycles_b": {
+        "3": 379,
+        "4": 5853,
+        "5": 37761,
+        "6": 268630,
+        "7": 1697665,
+        "8": 9421224
+      },
+      "girth": [
+        3,
+        3
+      ],
+      "girth_match": true,
+      "pair_index": 15,
+      "rank_counts": [
+        130,
+        492,
+        360
+      ],
+      "spectral": {
+        "hasse_adjacency": false,
+        "hasse_laplacian": false,
+        "hasse_rank_coloured_adjacency": false,
+        "hodge_L0_signed": false,
+        "hodge_L0_unsigned": false,
+        "hodge_L1_signed": false,
+        "hodge_L1_unsigned": false,
+        "hodge_L2_signed": false,
+        "hodge_L2_unsigned": false,
+        "skeleton_adjacency": false,
+        "skeleton_laplacian": false,
+        "skeleton_norm_laplacian": false
+      }
+    }
+  ],
+  "provenance_validated": false,
+  "spectral_matched": {
+    "hasse_adjacency": 0,
+    "hasse_laplacian": 0,
+    "hasse_rank_coloured_adjacency": 0,
+    "hodge_L0_signed": 0,
+    "hodge_L0_unsigned": 0,
+    "hodge_L1_signed": 0,
+    "hodge_L1_unsigned": 0,
+    "hodge_L2_signed": 0,
+    "hodge_L2_unsigned": 0,
+    "skeleton_adjacency": 0,
+    "skeleton_laplacian": 0,
+    "skeleton_norm_laplacian": 0
+  },
+  "tolerance": 1e-08,
+  "walk_L": 16
+}

@@ -1,0 +1,8 @@
+{
+  "pair_directory": "<WORKSPACE_ROOT>/data/punc_torus_vs_punc_klein_metric_matched",
+  "pair_count": 50,
+  "first_orientable": 50,
+  "second_nonorientable": 50,
+  "all_pairs_verified": true,
+  "method": "face-orientation parity propagation across shared edges"
+}
