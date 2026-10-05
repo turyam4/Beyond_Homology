@@ -50,11 +50,7 @@ is accepted only when the target separates while the reliability pair does not
 falsely separate.
 
 ## Requirements
-
-Use Python 3.10 or newer.  The code uses modern type-hint syntax such as
-`int | None` and `list[str]`, so older Python versions are not supported.
-
-The experiments were developed and run with Python 3.13.  A typical setup also
+The experiments were developed and run with Python 3.13.Use Python 3.10 or newer.  A typical setup also
 needs PyTorch, PyTorch Geometric, Hydra/OmegaConf, NumPy, SciPy, TopoNetX, and
 Matplotlib for plotting.
 
