@@ -1,387 +1,203 @@
-# Topological Benchmark Experiments
+# Beyond Homology
 
-This repository contains benchmark code for testing whether graph and cellular
-neural networks can distinguish topological objects that are intentionally
-matched on simple local statistics.
+Code for controlled experiments on cellular complexes with graph and
+cell-complex neural networks. The primary experiments measure whether a model
+separates matched pairs under a BREC-style target/reliability protocol.
 
-Run the commands below from the `Beyond_Homology` repository root unless a
-section explicitly changes directory.
+These are representation-level experiments. A successful run shows separation
+of the emitted tensors under the tested model and budget; it does **not** by
+itself prove that the model computes orientability, the fundamental group, or
+any other topological invariant.
 
-## Repository Structure
-
-```text
-Beyond_Homology/
-├── baselines/
-│   ├── boundary_mlp/
-│   ├── count_mlp/
-│   ├── dist_mlp/
-│   ├── esan/
-│   ├── gin/
-│   ├── hasse/
-│   ├── cin/
-│   └── smcn/
-├── data/
-│   ├── complex_data.py
-│   ├── complex_dataset.py
-│   ├── get_base_pairs.py
-│   └── utils.py
-└── experiments/
-    ├── aggregate_runs.py
-    ├── orientability/
-    │   ├── cylinder_vs_mobius/
-    │   ├── torus_vs_klein/
-    │   └── punc_torus_vs_punc_klein/
-    ├── fundamental_group/
-    │   └── FG_genus_2/
-    └── torus_vs_sphere/
-```
-
-The main experiments are:
+## Repository layout
 
 ```text
-experiments/orientability/
-experiments/fundamental_group/
-experiments/torus_vs_sphere/
+baselines/                         Model implementations
+data/get_base_pairs.py             Shared base-pair generator
+experiments/orientability/         Three orientability-labelled families
+experiments/fundamental_group/     Genus-2 and auxiliary presentation families
+experiments/torus_vs_sphere/       Positive-control benchmark
+experiments/aggregate_runs.py      Multi-seed result aggregation
 ```
 
-The evaluation protocol is BREC-style: each base pair is expanded into
-permuted copies, the model is trained to separate the target pair, and the run
-is accepted only when the target separates while the reliability pair does not
-falsely separate.
+Generated datasets, caches, logs, and run directories are intentionally
+ignored by Git.
 
-## Requirements
-The experiments were developed and run with Python 3.13.Use Python 3.10 or newer.  A typical setup also
-needs PyTorch, PyTorch Geometric, Hydra/OmegaConf, NumPy, SciPy, TopoNetX, and
-Matplotlib for plotting.
+## Environment
 
-## Benchmarks
+- Python 3.10 or newer; the checked environment used Python 3.13.7.
+- PyTorch and PyTorch Geometric compatible with the target CPU/CUDA platform.
+- The main launchers require Bash 4.3 or newer. macOS `/bin/bash` 3.2 is too old.
+- The fundamental-group launcher requires CUDA. The orientability launcher can
+  use CPU with `device=cpu num_gpus=1`.
 
-### Orientability
+On macOS, install a current Bash with `brew install bash` and invoke a launcher
+as `"$(brew --prefix)/bin/bash" orientability.sh`. The examples below assume
+that `bash --version` reports version 4.3 or newer.
 
-The orientability benchmark has three family members:
+`requirements.txt` records the package versions used, but it is not a complete
+environment bootstrap file: its first line is a Python version requirement,
+and the repository also needs `hydra-core`, `matplotlib`, and `pytest`.
+Install a platform-appropriate PyTorch/PyG stack first, then the remaining
+packages. Activate that environment before running the commands below, or set
+`PYTHON=/path/to/python`.
 
-```text
-cylinder_vs_mobius
-torus_vs_klein
-punc_torus_vs_punc_klein
-```
+## Validate the checkout
 
-These are designed to test whether a model can distinguish orientable from
-non-orientable complexes after controlling for simple local cues.
-
-The punctured family uses a certified metric-matched sweep of 50 pairs:
-`p=4` and `h=6,8,...,104`. Generation rejects any pair whose rank counts,
-degree profile, boundary loops, vertical-cycle periods, or exact node-to-face
-distance histogram differ between classes. Consequently the implemented
-count, boundary, and distance probes receive identical inputs on every pair;
-the benchmark measures whether stronger models detect structure beyond those
-controls. Certificates record the matched signatures for each evaluated pair.
-
-The shared orientability config is:
-
-```text
-experiments/orientability/config.yaml
-```
-
-This single config contains construction/evaluation parameters for all three
-orientability families.  Family-specific data settings live under:
-
-```yaml
-families:
-  cylinder_vs_mobius:
-  torus_vs_klein:
-  punc_torus_vs_punc_klein:
-```
-
-The launcher is:
+Run from the repository root:
 
 ```bash
-cd experiments/orientability
-bash orientability.sh
-```
-
-Default behavior is intentionally small:
-
-```text
-family=cylinder_vs_mobius
-model_name=gin
-seeds=0
-num_gpus=1
-```
-
-Examples:
-
-```bash
-# One model, one family, four GPUs and automatic seeds 0,1,2,3
-bash orientability.sh family=torus_vs_klein model_name=gin num_gpus=4
-
-# SMCN on all orientability families
-bash orientability.sh family=all model_name=smcn seeds=0,1,2,3 num_gpus=4
-
-# Run the available baseline set
-bash orientability.sh family=all model_name=baselines seeds=0,1,2,3 num_gpus=4
-
-# Override training hyperparameters
-bash orientability.sh family=punc_torus_vs_punc_klein model_name=esan epochs=40 copies=32 batch_size=8
-```
-
-Supported model names:
-
-```text
-mlp
-count_mlp
-dist_mlp
-boundary_mlp
-gin
-esan
-homp
-hasse
-smcn
-baselines
-all
-```
-
-`model_name=mlp` expands to the three MLP-style controls:
-
-```text
-count_mlp
-dist_mlp
-boundary_mlp
-```
-
-Each probe has one canonical implementation:
-
-```text
-baselines/count_mlp/
-baselines/dist_mlp/
-baselines/boundary_mlp/
-```
-
-In configuration and result files, the count probe retains the legacy model
-label `mlp`. At the launcher level, `model_name=mlp` runs all three probes;
-use `model_name=count_mlp` to run only the count probe.
-
-`model_name=smcn` uses the SMCN model implementation from:
-
-```text
-baselines/smcn/
-```
-
-### Fundamental Group
-
-The fundamental-group benchmark tests whether models can separate cellular
-complexes built from surface-group presentations from matched free-group
-controls.  The active experiment lives in:
-
-```text
-experiments/fundamental_group/
-```
-
-The genus-2 benchmark entry point is:
-
-```bash
-cd experiments/fundamental_group/FG_genus_2
-bash fundamental_group.sh
-```
-
-The shared config is:
-
-```text
-experiments/fundamental_group/config.yaml
-```
-
-Examples:
-
-```bash
-# Default: fundamental_group, GIN, GPU 0, seed 0
-bash fundamental_group.sh
-
-# SMCN
-bash fundamental_group.sh model_name=smcn
-
-# One baseline
-bash fundamental_group.sh model_name=gin
-
-# Main baseline set
-bash fundamental_group.sh model_name=baselines
-
-# Everything
-bash fundamental_group.sh model_name=all
-
-# Four GPUs and automatic seeds 0,1,2,3
-bash fundamental_group.sh model_name=esan num_gpus=4
-```
-
-Friendly launcher aliases:
-
-```text
-epochs=N   -> num_epochs=N
-copies=N   -> number_of_permuted_copies=N
-lr=VALUE   -> learning_rate=VALUE
-seeds=...  -> explicit model seeds
-num_gpus=N -> number of concurrent CUDA jobs
-```
-
-Run either launcher with `-h` or `--help` for its compact usage summary.
-
-### Torus vs Sphere Control
-
-The torus-vs-sphere experiment is a positive control for the baseline
-pipeline. Run it from the repository root:
-
-```bash
+python -m pytest -q
+python experiments/orientability/test_orient.py
 python experiments/torus_vs_sphere/test_torus_vs_sphere.py
-python experiments/torus_vs_sphere/run_baselines.py
 ```
 
-For a smaller smoke run:
+In the validated environment, pytest reports 13 passing tests and both direct
+topology checks finish with all checks passed.
+
+## Generate base pairs
+
+The repository does not track generated tensor datasets. Preview the resolved
+families and destinations with:
 
 ```bash
-python experiments/torus_vs_sphere/run_baselines.py \
-  --copies 8 --epochs 10 --mlp-epochs 40
+python data/get_base_pairs.py --family all --dry-run
 ```
 
-Its dataset cache, summary logs, and figures are written below
-`experiments/torus_vs_sphere/` and are ignored by Git.
-
-## Data Generation
-
-Base-pair generation is handled by:
-
-```text
-data/get_base_pairs.py
-```
-
-Generated base pairs are stored under:
-
-```text
-data/<family>/
-```
-
-For orientability families, `get_base_pairs.py` reads the common config:
-
-```text
-experiments/orientability/config.yaml
-```
-
-For the free-vs-surface fundamental-group data, it reads:
-
-```text
-experiments/fundamental_group/config.yaml
-```
-
-Generate all orientability base pairs:
+Generate all orientability families:
 
 ```bash
 python data/get_base_pairs.py --family orientability
 ```
 
-Generate every supported generated-data family:
+Individual orientability families are `cylinder_vs_mobius`,
+`torus_vs_klein`, and `punc_torus_vs_punc_klein`. The current configurations
+produce 64, 64, and 50 base pairs, respectively. Existing data is reused;
+`--overwrite` regenerates it deliberately.
+
+The generator also supports `--family free_vs_surface`, but those standalone
+files are not inputs to the genus-2 launcher below. That launcher builds its
+own target/reliability cache automatically.
+
+## Orientability-labelled experiments
+
+Configuration: `experiments/orientability/config.yaml`
+
+The three families are:
+
+- `cylinder_vs_mobius`
+- `torus_vs_klein`
+- `punc_torus_vs_punc_klein` (the configured metric-matched punctured family)
+
+The launcher validates or generates the requested base pairs, runs the selected
+seeds, and aggregates successful runs:
 
 ```bash
-python data/get_base_pairs.py --family all
+cd experiments/orientability
+
+# Default: cylinder_vs_mobius, GIN, seed 0, CUDA device 0
+bash orientability.sh
+
+# One CPU smoke run
+bash orientability.sh family=cylinder_vs_mobius model_name=gin \
+  device=cpu num_gpus=1 seeds=0 epochs=1 copies=8 max_pairs=1
+
+# SMCN on every family with four allocated GPUs
+bash orientability.sh family=all model_name=smcn \
+  num_gpus=4 seeds=0,1,2,3
 ```
 
-Generate one family:
+Supported names are `smcn`, `count_mlp`, `dist_mlp`, `boundary_mlp`,
+`gin`, `esan`, `homp`, and `hasse`, plus `baselines` and `all`. The alias
+`model_name=mlp` expands to the count, distance, and boundary MLP controls;
+use `model_name=count_mlp` for the count control alone.
+
+## Genus-2 free-vs-surface experiment
+
+Configuration: `experiments/fundamental_group/config.yaml`
+
+The current configuration evaluates 16 matched genus-2 pairs with 32 permuted
+copies per example. Target trials compare a genus-2 surface-group presentation
+with a free-group presentation whose relator freely reduces to the identity.
+Reliability trials compare independently permuted copies of the same surface
+example. A fresh model is trained for each pair.
+
+Interpret results relative to the stored complex representation and reported
+shortcut controls. Separation is not evidence that a model generally computes
+the fundamental group.
+
+Run inside a CUDA allocation:
 
 ```bash
-python data/get_base_pairs.py --family cylinder_vs_mobius
-python data/get_base_pairs.py --family torus_vs_klein
-python data/get_base_pairs.py --family punc_torus_vs_punc_klein
-python data/get_base_pairs.py --family free_vs_surface
+cd experiments/fundamental_group/FG_genus_2
+
+# Default: GIN, seed 0, CUDA device 0
+bash fundamental_group.sh
+
+# SMCN or all configured baselines
+bash fundamental_group.sh model_name=smcn
+bash fundamental_group.sh model_name=baselines num_gpus=4 seeds=0,1,2,3
 ```
 
-The generator writes only base pairs.  It does not write all permutation copies
-to disk.  Evaluators construct permutation copies on demand during evaluation.
+Supported names are `smcn`, `count_mlp`, `dist_mlp`, `boundary_mlp`,
+`spec_mlp`, `gin`, `esan`, `homp`, and `hasse`, plus `baselines` and `all`.
+The launcher builds or validates the required model-specific target/reliability
+cache before evaluation and aggregates completed seeds. Do not pre-generate
+`data/free_vs_surface` for this workflow.
 
-Each generated-data directory can contain a `manifest.json` recording the
-construction parameters.  If an existing directory matches the current
-manifest, generation is skipped.  Use `--overwrite` only when you intentionally
-want to regenerate a family.
+Both main launchers accept aliases such as `epochs=N`, `copies=N`, `lr=X`,
+`seeds=...`, and `num_gpus=N`. `GPU_CARDS="0,2"` selects visible physical
+cards. These options schedule processes; they do not request cluster resources.
+Use `--help` for the full launcher syntax.
 
-## Outputs
+## Positive control: torus vs sphere
 
-Orientability runs write:
+This experiment checks the non-SMCN baseline pipeline on a deliberately easier
+pair:
 
-```text
-experiments/orientability/<family>/runs/<model>/seed<seed>_<tag>/
-experiments/orientability/<family>/logs/<model>/seed<seed>_<tag>.log
+```bash
+python experiments/torus_vs_sphere/run_baselines.py
+
+# Reduced run
+python experiments/torus_vs_sphere/run_baselines.py \
+  --copies 8 --epochs 10 --mlp-epochs 40
 ```
 
-Fundamental-group runs write:
+## Auxiliary experiments
+
+- `experiments/fundamental_group/FG_pie_matched/` contains same-class control
+  families and its own README and launchers.
+- `experiments/fundamental_group/FG_relator/` contains held-out relator-family
+  experiments. Its independent validator imports `hom_certificate.py`, which
+  is absent from this snapshot; do not claim that validation is reproducible
+  until that file is restored.
+- `experiments/orientability/depth_sweep_orientability/` contains the SMCN
+  depth sweep and a dedicated README.
+
+## Outputs and interpretation
+
+The main launchers write under the corresponding experiment directory:
 
 ```text
-experiments/fundamental_group/FG_genus_2/runs/<model>/seed<seed>_<tag>/
-experiments/fundamental_group/FG_genus_2/logs/<model>/seed<seed>_<tag>.log
+<family>/runs/<model>/seed<seed>_<tag>/
+<family>/logs/<model>/seed<seed>_<tag>.log
 ```
 
 Typical run artifacts:
 
-```text
-config.json
-metrics.json
-pair_results.csv
-certificates.jsonl
-```
+- `config.json`: resolved run configuration;
+- `metrics.json`: aggregate counts, statistics, runtime, and parameter count;
+- `pair_results.csv`: per-pair measurements;
+- `certificates.jsonl`: construction and matching metadata.
 
-`metrics.json` contains BREC counts, target/reliability T2 statistics, runtime,
-and model parameter count when available.
+Report the three BREC quantities separately:
 
-`certificates.jsonl` records benchmark-construction metadata for auditability.
+- **target found**: the target pair separates;
+- **reliability passed**: the reliability pair does not falsely separate;
+- **BREC solved**: both conditions hold for the same pair.
 
-## Aggregation
-
-The shared aggregation helper is:
-
-```text
-experiments/aggregate_runs.py
-```
-
-Launchers call it automatically after successful seed runs.  It can also be
-run manually:
-
-```bash
-python experiments/aggregate_runs.py experiments/orientability/cylinder_vs_mobius/runs gin
-python experiments/aggregate_runs.py experiments/fundamental_group/FG_genus_2/runs smcn
-```
-
-The aggregator reports per-seed BREC counts and final mean ± standard deviation
-over the selected seed runs.
-
-## GPU Scheduling
-
-Both main launchers accept `num_gpus=N`, `n_gpus=N`, `gpus=N`, and
-`num_cuda_gpus=N`. By default they use one GPU and run seed `0`. When seeds
-are omitted, `N` GPUs automatically produce seeds `0..N-1`:
-
-```bash
-bash orientability.sh family=all model_name=gin n_gpus=4
-```
-
-Use `GPU_CARDS` to select physical cards. If no GPU-count argument is given,
-the number of listed cards determines the GPU count and automatic seed count:
-
-```bash
-GPU_CARDS="0,2" bash orientability.sh family=torus_vs_klein model_name=smcn
-```
-
-An explicit `seeds=...` overrides automatic seeds. Seeds are assigned to the
-selected GPUs round-robin and run in GPU-sized waves.
-
-## Memory Policy
-
-The evaluators are written to avoid materializing the full
-`pairs × copies × seeds` dataset in memory.
-
-Important behavior:
-
-- base pairs are loaded pair-wise;
-- permutation copies are constructed for the current pair/trial;
-- target and reliability phases are evaluated separately;
-- tensors are moved to GPU batch-wise;
-- CPU/GPU memory is released between pair phases where possible;
-- gradient accumulation keeps one optimizer update per epoch even when copies
-  are processed in mini-batches.
-
-This matters for fair BREC comparison: reducing the mini-batch size should not
-increase the number of optimizer steps per epoch.
+The launchers call `experiments/aggregate_runs.py` automatically. Generated
+artifacts may contain machine paths, so re-run an anonymity scan before sharing
+raw result directories. Also treat `.pt` files as trusted inputs: parts of the
+codebase use `torch.load(..., weights_only=False)`, which is unsafe for files
+from untrusted sources.
