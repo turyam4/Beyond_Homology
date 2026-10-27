@@ -269,54 +269,10 @@ construction parameters.  If an existing directory matches the current
 manifest, generation is skipped.  Use `--overwrite` only when you intentionally
 want to regenerate a family.
 
-## Outputs
-
-Orientability runs write:
-
-```text
-experiments/orientability/<family>/runs/<model>/seed<seed>_<tag>/
-experiments/orientability/<family>/logs/<model>/seed<seed>_<tag>.log
-```
-
-Fundamental-group runs write:
-
-```text
-experiments/fundamental_group/FG_genus_2/runs/<model>/seed<seed>_<tag>/
-experiments/fundamental_group/FG_genus_2/logs/<model>/seed<seed>_<tag>.log
-```
-
-Typical run artifacts:
-
-```text
-config.json
-metrics.json
-pair_results.csv
-certificates.jsonl
-```
-
 `metrics.json` contains BREC counts, target/reliability T2 statistics, runtime,
 and model parameter count when available.
 
 `certificates.jsonl` records benchmark-construction metadata for auditability.
-
-## Aggregation
-
-The shared aggregation helper is:
-
-```text
-experiments/aggregate_runs.py
-```
-
-Launchers call it automatically after successful seed runs.  It can also be
-run manually:
-
-```bash
-python experiments/aggregate_runs.py experiments/orientability/cylinder_vs_mobius/runs gin
-python experiments/aggregate_runs.py experiments/fundamental_group/FG_genus_2/runs smcn
-```
-
-The aggregator reports per-seed BREC counts and final mean ± standard deviation
-over the selected seed runs.
 
 ## GPU Scheduling
 

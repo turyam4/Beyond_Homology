@@ -27,6 +27,7 @@ multirun/
 .hydra/
 
 # Benchmark-generated data and artifacts
+data/free_vs_surface/
 experiments/generate_data/*/
 experiments/**/logs/
 experiments/**/runs/
